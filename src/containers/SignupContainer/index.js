@@ -2,23 +2,23 @@ import React, { Component } from "react";
 import { Grid, withStyles } from "@material-ui/core";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-import Login from "../../components/Login";
+import Signup from "../../components/Signup";
 const styles = {
-  login: {
+  signup: {
     direction: "column",
     justify: "space-evenly",
     alignItems: "center",
   },
 };
-class LoginContainer extends Component {
+class SignupContainer extends Component {
   render() {
     return (
-      <Grid container className={this.props.classes.login}>
+      <Grid container className={this.props.classes.signup}>
         <Header />
-        <Login history={this.props.history} />
+        <Signup history={this.props.history} />
         <Footer />
       </Grid>
     );
   }
 }
-export default withStyles(styles)(LoginContainer);
+export default withStyles(styles)(SignupContainer);

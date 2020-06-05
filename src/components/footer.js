@@ -6,8 +6,9 @@ const styles = {
     width: "100%",
     height: "35px",
     textAlign: "center",
-    color: "blue",
-    backgroundColor: "#ff0055",
+    color: "black",
+    fontFamily: '"Soleil",Helvetica,Arial,sans-serif',
+    fontSize: "15px",
   },
 };
 class Footer extends Component {

@@ -14,7 +14,7 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
   },
-  login: {
+  signup: {
     display: "flex",
     flexDirection: "column",
     width: "30%",
@@ -24,7 +24,7 @@ const styles = {
     borderRadius: "20px",
     backgroundColor: "#eeeff1",
   },
-  loginButton: {
+  signupButton: {
     backgroundColor: "#1bbc9b",
     width: "300px",
     height: "40px",
@@ -71,13 +71,13 @@ const styles = {
 };
 
 class Login extends Component {
-  signUpHandler = () => {
-    this.props.history.push(`/signup`);
+  signupHandler = () => {
+    this.props.history.push(`/login`);
   };
   render() {
     return (
       <div className={this.props.classes.content}>
-        <div className={this.props.classes.login}>
+        <div className={this.props.classes.signup}>
           <Formik
             initialValues={{ email: "", password: "", userName: "" }}
             validate={(values) => {
@@ -92,7 +92,9 @@ class Login extends Component {
               if (!values.password) {
                 errors.password = "Password Required";
               }
-
+              if (!values.userName) {
+                errors.userName = "Username Required";
+              }
               return errors;
             }}
           >
@@ -106,6 +108,21 @@ class Login extends Component {
               isSubmitting,
             }) => (
               <form className={this.props.classes.form}>
+                <div className={this.props.classes.formFeild}>
+                  <input
+                    type="userName"
+                    name="userName"
+                    placeholder="User Name"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.userName}
+                    className={this.props.classes.inputFeild}
+                  />
+                  <div className={this.props.classes.error}>
+                    {errors.userName && touched.userName && errors.userName}
+                  </div>
+                </div>
+
                 <div className={this.props.classes.formFeild}>
                   <input
                     type="email"
@@ -136,27 +153,14 @@ class Login extends Component {
                   </div>
                 </div>
 
-                <div className={this.props.classes.buttonFeild}>
-                  <Button type="primary" className={this.props.classes.button}>
-                    Forgot-Password
-                  </Button>
-                  |
-                  <Button
-                    type="primary"
-                    className={this.props.classes.button}
-                    onClick={this.signUpHandler}
-                  >
-                    Signup
-                  </Button>
-                </div>
-
                 <div>
                   <Button
-                    className={this.props.classes.loginButton}
+                    className={this.props.classes.signupButton}
                     type="primary"
                     disabled={isSubmitting}
+                    onClick={this.signupHandler}
                   >
-                    Login
+                    SignUp
                   </Button>
                 </div>
               </form>
