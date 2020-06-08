@@ -95,6 +95,9 @@ class Login extends Component {
 
               return errors;
             }}
+            onSubmit={() => {
+              this.props.history.push(`/dashboard`);
+            }}
           >
             {({
               values,
@@ -102,10 +105,9 @@ class Login extends Component {
               touched,
               handleChange,
               handleBlur,
-
-              isSubmitting,
+              handleSubmit,
             }) => (
-              <form className={this.props.classes.form}>
+              <form onSubmit={handleSubmit} className={this.props.classes.form}>
                 <div className={this.props.classes.formFeild}>
                   <input
                     type="email"
@@ -154,7 +156,6 @@ class Login extends Component {
                   <Button
                     className={this.props.classes.loginButton}
                     type="primary"
-                    disabled={isSubmitting}
                   >
                     Login
                   </Button>

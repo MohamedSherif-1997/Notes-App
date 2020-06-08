@@ -71,9 +71,6 @@ const styles = {
 };
 
 class Login extends Component {
-  signupHandler = () => {
-    this.props.history.push(`/login`);
-  };
   render() {
     return (
       <div className={this.props.classes.content}>
@@ -97,6 +94,9 @@ class Login extends Component {
               }
               return errors;
             }}
+            onSubmit={() => {
+              this.props.history.push(`/login`);
+            }}
           >
             {({
               values,
@@ -104,10 +104,10 @@ class Login extends Component {
               touched,
               handleChange,
               handleBlur,
-
+              handleSubmit,
               isSubmitting,
             }) => (
-              <form className={this.props.classes.form}>
+              <form onSubmit={handleSubmit} className={this.props.classes.form}>
                 <div className={this.props.classes.formFeild}>
                   <input
                     type="userName"
@@ -157,8 +157,6 @@ class Login extends Component {
                   <Button
                     className={this.props.classes.signupButton}
                     type="primary"
-                    disabled={isSubmitting}
-                    onClick={this.signupHandler}
                   >
                     SignUp
                   </Button>
