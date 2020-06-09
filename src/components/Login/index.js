@@ -102,10 +102,14 @@ class Login extends Component {
               return errors;
             }}
             onSubmit={() => {
+<<<<<<< HEAD
               this.props.login();
               if (this.props.apiStatus === ApiStatus.SUCCESS) {
                 this.props.history.push(`/dashboard`);
               }
+=======
+              this.props.history.push(`/dashboard`);
+>>>>>>> 9ae00bff02077f4d599a19a3491eea51568e8982
             }}
           >
             {({
@@ -114,10 +118,9 @@ class Login extends Component {
               touched,
               handleChange,
               handleBlur,
-
-              isSubmitting,
+              handleSubmit,
             }) => (
-              <form className={this.props.classes.form}>
+              <form onSubmit={handleSubmit} className={this.props.classes.form}>
                 <div className={this.props.classes.formFeild}>
                   <input
                     type="email"
@@ -166,7 +169,6 @@ class Login extends Component {
                   <Button
                     className={this.props.classes.loginButton}
                     type="primary"
-                    disabled={isSubmitting}
                   >
                     Login
                   </Button>
