@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { Formik } from "formik";
 
 import { withStyles, Button } from "@material-ui/core";
+import { connect } from "react-redux";
+import { login } from "../../actions/loginAction.ts";
+import { ApiStatus } from "../../models/apiStatus";
 
 const styles = {
   content: {
@@ -71,6 +74,9 @@ const styles = {
 };
 
 class Login extends Component {
+  // componentDidMount() {
+  //   this.props.login();
+  // }
   signUpHandler = () => {
     this.props.history.push(`/signup`);
   };
@@ -94,6 +100,12 @@ class Login extends Component {
               }
 
               return errors;
+            }}
+            onSubmit={() => {
+              this.props.login();
+              if (this.props.apiStatus === ApiStatus.SUCCESS) {
+                this.props.history.push(`/dashboard`);
+              }
             }}
           >
             {({
@@ -167,5 +179,13 @@ class Login extends Component {
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+    login: state,
+    apiStatus: state.apiStatus,
+  };
+}
 
-export default withStyles(styles)(Login);
+export default connect(mapStateToProps, {
+  login,
+})(withStyles(styles)(Login));
