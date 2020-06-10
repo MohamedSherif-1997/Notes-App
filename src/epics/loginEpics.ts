@@ -12,7 +12,16 @@ const LoginEpic: Epic<ILoginAction, any, IState> = (action$, store$) =>
   action$.pipe(
     ofType(LoginActionTypes.Login),
     switchMap((action) => {
-      return from(axios.post(`http://localhost:5000/notes/login`)).pipe(
+      const params = new URLSearchParams();
+      params.append(" email", action.payload.email);
+      params.append("password", action.payload.password);
+      // const params = {
+      //   email: action.payload.email,
+      //   password: action.payload.password,
+      // };
+      return from(
+        axios.post(`http://localhost:5000/notes/users/login?${params}`)
+      ).pipe(
         map((response) => {
           console.log(response);
           return loginSuccess(response);

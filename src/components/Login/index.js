@@ -3,8 +3,7 @@ import { Formik } from "formik";
 
 import { withStyles, Button } from "@material-ui/core";
 import { connect } from "react-redux";
-import { login } from "../../actions/loginAction.ts";
-import { ApiStatus } from "../../models/apiStatus";
+import { login } from "../../actions/loginAction";
 
 const styles = {
   content: {
@@ -101,15 +100,9 @@ class Login extends Component {
 
               return errors;
             }}
-            onSubmit={() => {
-<<<<<<< HEAD
-              this.props.login();
-              if (this.props.apiStatus === ApiStatus.SUCCESS) {
-                this.props.history.push(`/dashboard`);
-              }
-=======
+            onSubmit={(values) => {
+              this.props.login(values.email, values.password);
               this.props.history.push(`/dashboard`);
->>>>>>> 9ae00bff02077f4d599a19a3491eea51568e8982
             }}
           >
             {({
