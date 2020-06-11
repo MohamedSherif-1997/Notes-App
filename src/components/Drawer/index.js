@@ -23,7 +23,12 @@ import RestoreFromTrashSharpIcon from "@material-ui/icons/RestoreFromTrashSharp"
 import {
   DRAWER_SECONDARY_LIST,
   DRAWER_PRIMARY_LIST,
-} from "../constants/string";
+} from "../../constants/string";
+
+import MyNotes from "../Drawer/myNotes";
+import CreateNotes from "../Drawer/createNotes";
+import Trash from "../Drawer/trash";
+import Spam from "../Drawer/spam";
 
 const drawerWidth = 240;
 
@@ -32,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
   },
   appBar: {
+    backgroundColor: "#c13584",
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
@@ -93,6 +99,7 @@ export default function DashboardDrawer() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [component, setComponent] = React.useState("My Notes");
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -124,7 +131,7 @@ export default function DashboardDrawer() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Dashboard
+            Notes App
           </Typography>
         </Toolbar>
       </AppBar>
@@ -153,7 +160,7 @@ export default function DashboardDrawer() {
         <Divider />
         <List>
           {DRAWER_PRIMARY_LIST.map((text, index) => (
-            <ListItem button key={text}>
+            <ListItem button key={text} onClick={() => setComponent(text)}>
               <ListItemIcon>
                 {index % 2 === 0 ? <NotesSharpIcon /> : <CreateSharpIcon />}
               </ListItemIcon>
@@ -164,7 +171,7 @@ export default function DashboardDrawer() {
         <Divider />
         <List>
           {DRAWER_SECONDARY_LIST.map((text, index) => (
-            <ListItem button key={text}>
+            <ListItem button key={text} onClick={() => setComponent(text)}>
               <ListItemIcon>
                 {index % 2 === 0 ? (
                   <NotesSharpIcon />
@@ -179,7 +186,16 @@ export default function DashboardDrawer() {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Typography paragraph>Not Yet Created !!</Typography>
+        <div className={classes.toolbar} />
+        {component === "My Notes" ? (
+          <MyNotes />
+        ) : component === "Create Notes" ? (
+          <CreateNotes />
+        ) : component === "Trash" ? (
+          <Trash />
+        ) : (
+          <Spam />
+        )}
       </main>
     </div>
   );
