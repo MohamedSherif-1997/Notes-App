@@ -19,6 +19,9 @@ import ListItemText from "@material-ui/core/ListItemText";
 import NotesSharpIcon from "@material-ui/icons/NotesSharp";
 import CreateSharpIcon from "@material-ui/icons/CreateSharp";
 import RestoreFromTrashSharpIcon from "@material-ui/icons/RestoreFromTrashSharp";
+import NotificationsIcon from "@material-ui/icons/Notifications";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import { Grid } from "@material-ui/core";
 
 import {
   DRAWER_SECONDARY_LIST,
@@ -93,6 +96,12 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  icons: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+  },
 }));
 
 export default function DashboardDrawer() {
@@ -119,20 +128,38 @@ export default function DashboardDrawer() {
         })}
       >
         <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, {
-              [classes.hide]: open,
-            })}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Notes App
-          </Typography>
+          <Grid container spacing={3}>
+            <Grid item>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                onClick={handleDrawerOpen}
+                edge="start"
+                className={clsx(classes.menuButton, {
+                  [classes.hide]: open,
+                })}
+              >
+                <MenuIcon />
+              </IconButton>
+            </Grid>
+            <Grid item xs={10} sm={8}>
+              <Typography
+                variant="h6"
+                noWrap
+                style={{ alignContent: "center" }}
+              >
+                Notes App
+              </Typography>
+            </Grid>
+            <Grid item xs={6} sm={2} className={classes.icons}>
+              <Grid item>
+                <NotificationsIcon fontSize="large" />
+              </Grid>
+              <Grid item>
+                <AccountCircleIcon fontSize="large" />
+              </Grid>
+            </Grid>
+          </Grid>
         </Toolbar>
       </AppBar>
       <Drawer
