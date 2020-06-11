@@ -1,8 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
+import { Grid } from "@material-ui/core";
+import DashboardDrawer from "../../components/Drawer";
 
-class Dashboard extends Component {
-  render() {
-    return <h1>Dashboard</h1>;
-  }
+function Dashboard(props) {
+  return (
+    <Grid container>
+      <DashboardDrawer history={props.history} />
+    </Grid>
+  );
 }
+
 export default Dashboard;

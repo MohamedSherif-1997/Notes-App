@@ -70,7 +70,7 @@ const styles = {
   },
 };
 
-class Login extends Component {
+class Signup extends Component {
   render() {
     return (
       <div className={this.props.classes.content}>
@@ -170,4 +170,4 @@ class Login extends Component {
   }
 }
 
-export default withStyles(styles)(Login);
+export default withStyles(styles)(Signup);

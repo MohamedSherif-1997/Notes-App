@@ -11,7 +11,11 @@ function App() {
       <Router history={history}>
         <Route exact path="/login" component={LoginContainer} />
         <Route exact path="/signup" component={SignupContainer} />
-        <Route exact path="/dashboard" component={DashboardContainer} />
+        <Route
+          exact
+          path="/dashboard/my-notes"
+          component={DashboardContainer}
+        />
       </Router>
     </div>
   );
