@@ -96,7 +96,7 @@ class Login extends Component {
               return errors;
             }}
             onSubmit={() => {
-              this.props.history.push(`/dashboard`);
+              this.props.history.push(`/dashboard/my-notes`);
             }}
           >
             {({
