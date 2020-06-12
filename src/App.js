@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+} from "react-router-dom";
 import LoginContainer from "./containers/LoginContainer";
 import SignupContainer from "./containers/SignupContainer";
 import DashboardContainer from "./containers/Dashboard";
@@ -9,13 +14,16 @@ function App() {
   return (
     <div>
       <Router history={history}>
-        <Route exact path="/login" component={LoginContainer} />
-        <Route exact path="/signup" component={SignupContainer} />
-        <Route
-          exact
-          path="/dashboard/my-notes"
-          component={DashboardContainer}
-        />
+        <Switch>
+          <Route exact path="/login" component={LoginContainer} />
+          <Route exact path="/signup" component={SignupContainer} />
+          <Route
+            exact
+            path="/dashboard/my-notes"
+            component={DashboardContainer}
+          />
+          <Redirect to="/login" />
+        </Switch>
       </Router>
     </div>
   );
