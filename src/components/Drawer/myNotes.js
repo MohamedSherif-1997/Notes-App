@@ -1,28 +1,32 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import Collapse from "@material-ui/core/Collapse";
-import Avatar from "@material-ui/core/Avatar";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import { red } from "@material-ui/core/colors";
+import {
+  makeStyles,
+  Card,
+  CardHeader,
+  CardMedia,
+  CardContent,
+  CardActions,
+  Collapse,
+  Avatar,
+  IconButton,
+  Typography,
+} from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import { red } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 300,
+    maxWidth: 330,
+    marginBottom: "10px",
+    marginLeft: "15px",
   },
   media: {
     height: 0,
-    paddingTop: "56.25%", // 16:9
+    paddingTop: "45.25%", // 16:9
   },
   expand: {
     transform: "rotate(0deg)",
@@ -42,20 +46,21 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     justifyContent: "flex-start",
   },
-  card: {
-    padding: "15px",
+  cardExpandContent: {
+    maxWidth: 300,
+    maxHeight: 100,
+    overflowY: "auto",
   },
 }));
+
 const DUMMY_CARDS = [
   {
     id: 1,
     name: "SherifKhan",
     title: "Chorizo Paella",
     date: "September 14, 2016",
-    description:
-      "Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high heat.",
     details:
-      "Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high heat. Add chicken, shrimp and chorizo, and cook,  stirring occasionally until lightly browned, 6 to 8 minutes.  Transfer shrimp to a large plate and set aside, leaving chicken and    chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes,  onion, salt and pepper, and cook, stirring often until thickened and   fragrant, about 10 minutes",
+      "Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high heat. Add chicken, shrimp and chorizo, and cook,  stirring occasionally until lightly browned, 6 to 8 minutes.  Transfer shrimp to a large plate and set aside, leaving chicken and    chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes,  onion, salt and pepper, and cook, stirring often until thickened and   fragrant, about 10 minutes Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet ",
     imgTitle: null,
   },
   {
@@ -63,8 +68,6 @@ const DUMMY_CARDS = [
     name: "Mohamed",
     title: "Shrimp and Chorizo Paella",
     date: "September 14, 2016",
-    description:
-      "Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high heat.",
     details:
       "Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high heat. Add chicken, shrimp and chorizo, and cook,  stirring occasionally until lightly browned, 6 to 8 minutes.  Transfer shrimp to a large plate and set aside, leaving chicken and    chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes,  onion, salt and pepper, and cook, stirring often until thickened and   fragrant, about 10 minutes. Add saffron broth and remaining 4 1/2   cups chicken broth; bring to a boil.",
     img: null,
@@ -74,10 +77,8 @@ const DUMMY_CARDS = [
   {
     id: 3,
     name: "Kalam",
-    title: "Paella",
+    title: "CardEx01",
     date: "September 14, 2016",
-    description:
-      "Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high heat.",
     details:
       "Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high heat. Add chicken, shrimp and chorizo, and cook,  stirring occasionally until lightly browned, 6 to 8 minutes.  Transfer shrimp to a large plate and set aside, leaving chicken and    chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes,  onion, salt and pepper, and cook, stirring often until thickened and   fragrant, about 10 minutes. Add saffron broth and remaining 4 1/2   cups chicken broth; bring to a boil.",
     img: null,
@@ -86,10 +87,8 @@ const DUMMY_CARDS = [
   {
     id: 4,
     name: "Aslam",
-    title: "Paella",
+    title: "Paella@0",
     date: "September 14, 2016",
-    description:
-      "Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high heat.",
     details:
       "Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high heat. Add chicken, shrimp and chorizo, and cook,  stirring occasionally until lightly browned, 6 to 8 minutes.  Transfer shrimp to a large plate and set aside, leaving chicken and    chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes,  onion, salt and pepper, and cook, stirring often until thickened and   fragrant, about 10 minutes. Add saffron broth and remaining 4 1/2   cups chicken broth; bring to a boil.",
     img: null,
@@ -98,10 +97,8 @@ const DUMMY_CARDS = [
   {
     id: 5,
     name: "Abarar",
-    title: "Paella",
+    title: "Paella@1",
     date: "September 14, 2016",
-    description:
-      "Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high heat.",
     details:
       "Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high heat. Add chicken, shrimp and chorizo, and cook,  stirring occasionally until lightly browned, 6 to 8 minutes.  Transfer shrimp to a large plate and set aside, leaving chicken and    chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes,  onion, salt and pepper, and cook, stirring often until thickened and   fragrant, about 10 minutes. Add saffron broth and remaining 4 1/2   cups chicken broth; bring to a boil.",
     img: null,
@@ -110,10 +107,8 @@ const DUMMY_CARDS = [
   {
     id: 6,
     name: "Aslam",
-    title: "Paella",
+    title: "Paella@2",
     date: "September 14, 2016",
-    description:
-      "Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high heat.",
     details:
       "Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high heat. Add chicken, shrimp and chorizo, and cook,  stirring occasionally until lightly browned, 6 to 8 minutes.  Transfer shrimp to a large plate and set aside, leaving chicken and    chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes,  onion, salt and pepper, and cook, stirring often until thickened and   fragrant, about 10 minutes. Add saffron broth and remaining 4 1/2   cups chicken broth; bring to a boil.",
     img: null,
@@ -122,28 +117,27 @@ const DUMMY_CARDS = [
   {
     id: 7,
     name: "Abararll",
-    title: "Paella",
+    title: "Paella@3",
     date: "September 14, 2016",
-    description:
-      "Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high heat.",
     details:
       "Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high heat. Add chicken, shrimp and chorizo, and cook,  stirring occasionally until lightly browned, 6 to 8 minutes.  Transfer shrimp to a large plate and set aside, leaving chicken and    chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes,  onion, salt and pepper, and cook, stirring often until thickened and   fragrant, about 10 minutes. Add saffron broth and remaining 4 1/2   cups chicken broth; bring to a boil.",
     img: null,
     imgTitle: null,
   },
 ];
+
 export default function MyNotes() {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
+  const [expandedId, setExpandedId] = React.useState(-1);
 
-  const handleExpandClick = (e) => {
-    setExpanded(!expanded);
+  const handleExpandClick = (i) => {
+    setExpandedId(expandedId === i ? -1 : i);
   };
 
   return (
     <div container className={classes.cardContainer}>
-      {DUMMY_CARDS.map((card) => (
-        <div className={classes.card}>
+      {DUMMY_CARDS.map((card, index) => (
+        <div>
           <Card className={classes.root} key={card.id}>
             <CardHeader
               avatar={
@@ -166,18 +160,21 @@ export default function MyNotes() {
                 title={card.imgTitle}
               />
             ) : null}
-            {card.description ? (
+            {card.details ? (
               <CardContent key={card.id}>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  {card.description}....
+                  {card.details.substr(0, 100)}....
                   <span style={{ color: "red" }}>
                     Readmore
                     <IconButton
                       className={clsx(classes.expand, {
-                        [classes.expandOpen]: expanded,
+                        [classes.expandOpen]: expandedId === index,
                       })}
-                      onClick={handleExpandClick}
-                      aria-expanded={expanded}
+                      id={card.id}
+                      onClick={() => {
+                        handleExpandClick(index);
+                      }}
+                      aria-expanded={expandedId === index}
                       aria-label="show more"
                     >
                       <ExpandMoreIcon />
@@ -195,9 +192,11 @@ export default function MyNotes() {
               </IconButton>
             </CardActions>
             {card.details ? (
-              <Collapse in={expanded} timeout="auto" unmountOnExit>
+              <Collapse in={expandedId === index} timeout="auto" unmountOnExit>
                 <CardContent>
-                  <Typography paragraph>{card.details}</Typography>
+                  <Typography paragraph className={classes.cardExpandContent}>
+                    {card.details.substr(100)}
+                  </Typography>
                 </CardContent>
               </Collapse>
             ) : null}
