@@ -213,7 +213,6 @@ export default function DashboardDrawer() {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <div className={classes.toolbar} />
         {component === "My Notes" ? (
           <MyNotes />
         ) : component === "Create Notes" ? (
