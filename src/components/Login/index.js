@@ -17,8 +17,8 @@ const styles = {
   login: {
     display: "flex",
     flexDirection: "column",
-    width: "30%",
-    height: "60%",
+    width: "350px",
+    height: "300px",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: "20px",
@@ -26,7 +26,7 @@ const styles = {
   },
   loginButton: {
     backgroundColor: "#1bbc9b",
-    width: "300px",
+    width: "250px",
     height: "40px",
     textAlign: "center",
     marginLeft: "auto",
