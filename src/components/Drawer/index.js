@@ -15,23 +15,22 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-
+import { Grid } from "@material-ui/core";
 import NotesSharpIcon from "@material-ui/icons/NotesSharp";
 import CreateSharpIcon from "@material-ui/icons/CreateSharp";
 import RestoreFromTrashSharpIcon from "@material-ui/icons/RestoreFromTrashSharp";
 import NotificationsIcon from "@material-ui/icons/Notifications";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import { Grid } from "@material-ui/core";
 
 import {
   DRAWER_SECONDARY_LIST,
   DRAWER_PRIMARY_LIST,
 } from "../../constants/string";
-
 import MyNotes from "../Drawer/myNotes";
 import CreateNotes from "../Drawer/createNotes";
 import Trash from "../Drawer/trash";
 import Spam from "../Drawer/spam";
+
+import Logout from "../logout";
 
 const drawerWidth = 240;
 
@@ -102,9 +101,13 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-evenly",
     alignItems: "center",
   },
+  notificationIcon: {
+    fontSize: "xx-large",
+    color: "wheat",
+  },
 }));
 
-export default function DashboardDrawer() {
+export default function DashboardDrawer(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -117,7 +120,6 @@ export default function DashboardDrawer() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -142,7 +144,7 @@ export default function DashboardDrawer() {
                 <MenuIcon />
               </IconButton>
             </Grid>
-            <Grid item xs={10} sm={8}>
+            <Grid item xs={10} sm={9}>
               <Typography
                 variant="h6"
                 noWrap
@@ -151,12 +153,12 @@ export default function DashboardDrawer() {
                 Notes App
               </Typography>
             </Grid>
-            <Grid item xs={6} sm={2} className={classes.icons}>
+            <Grid item xs={5} sm={1} className={classes.icons}>
               <Grid item>
-                <NotificationsIcon fontSize="large" />
+                <NotificationsIcon className={classes.notificationIcon} />
               </Grid>
               <Grid item>
-                <AccountCircleIcon fontSize="large" />
+                <Logout history={props.history} />
               </Grid>
             </Grid>
           </Grid>
