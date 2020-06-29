@@ -45,10 +45,6 @@ const styles = {
     padding: "10px",
     border: "none",
   },
-  form: {
-    display: "flex",
-    flexDirection: "column",
-  },
   formFeild: {
     padding: "10px",
   },
@@ -107,7 +103,7 @@ class Login extends Component {
               handleBlur,
               handleSubmit,
             }) => (
-              <form onSubmit={handleSubmit} className={this.props.classes.form}>
+              <form onSubmit={handleSubmit}>
                 <div className={this.props.classes.formFeild}>
                   <input
                     type="email"
