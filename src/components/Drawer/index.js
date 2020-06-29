@@ -17,16 +17,16 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import { Grid } from "@material-ui/core";
 import NotesSharpIcon from "@material-ui/icons/NotesSharp";
-import CreateSharpIcon from "@material-ui/icons/CreateSharp";
 import RestoreFromTrashSharpIcon from "@material-ui/icons/RestoreFromTrashSharp";
 import NotificationsIcon from "@material-ui/icons/Notifications";
+import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 
 import {
   DRAWER_SECONDARY_LIST,
   DRAWER_PRIMARY_LIST,
 } from "../../constants/string";
 import MyNotes from "../Drawer/myNotes";
-import CreateNotes from "../Drawer/createNotes";
+import NewNotes from "../Drawer/newNotes";
 import Trash from "../Drawer/trash";
 import Spam from "../Drawer/spam";
 
@@ -191,7 +191,11 @@ export default function DashboardDrawer(props) {
           {DRAWER_PRIMARY_LIST.map((text, index) => (
             <ListItem button key={text} onClick={() => setComponent(text)}>
               <ListItemIcon>
-                {index % 2 === 0 ? <NotesSharpIcon /> : <CreateSharpIcon />}
+                {index % 2 === 0 ? (
+                  <NotesSharpIcon />
+                ) : (
+                  <AddCircleOutlineIcon className={classes.icon} />
+                )}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
@@ -217,8 +221,8 @@ export default function DashboardDrawer(props) {
         <div className={classes.toolbar} />
         {component === "My Notes" ? (
           <MyNotes />
-        ) : component === "Create Notes" ? (
-          <CreateNotes />
+        ) : component === "New Notes" ? (
+          <NewNotes />
         ) : component === "Trash" ? (
           <Trash />
         ) : (
