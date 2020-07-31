@@ -20,6 +20,7 @@ import NotesSharpIcon from "@material-ui/icons/NotesSharp";
 import RestoreFromTrashSharpIcon from "@material-ui/icons/RestoreFromTrashSharp";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 import {
   DRAWER_SECONDARY_LIST,
@@ -111,7 +112,7 @@ export default function DashboardDrawer(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const [component, setComponent] = React.useState("My Notes");
+  const [component, setComponent] = React.useState("my-notes");
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -119,6 +120,11 @@ export default function DashboardDrawer(props) {
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+  const drawerRouteHandle = (text) => {
+    if (text === "New Notes") {
+      setComponent("new-notes");
+    }
   };
   return (
     <div className={classes.root}>
@@ -164,62 +170,69 @@ export default function DashboardDrawer(props) {
           </Grid>
         </Toolbar>
       </AppBar>
-      <Drawer
-        variant="permanent"
-        className={clsx(classes.drawer, {
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
-        })}
-        classes={{
-          paper: clsx({
+      <Router>
+        <Drawer
+          variant="permanent"
+          className={clsx(classes.drawer, {
             [classes.drawerOpen]: open,
             [classes.drawerClose]: !open,
-          }),
-        }}
-      >
-        <div className={classes.toolbar}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "rtl" ? (
-              <ChevronRightIcon />
-            ) : (
-              <ChevronLeftIcon />
-            )}
-          </IconButton>
-        </div>
-        <Divider />
-        <List>
-          {DRAWER_PRIMARY_LIST.map((text, index) => (
-            <ListItem button key={text} onClick={() => setComponent(text)}>
-              <ListItemIcon>
-                {index % 2 === 0 ? (
-                  <NotesSharpIcon />
-                ) : (
-                  <AddCircleOutlineIcon className={classes.icon} />
-                )}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {DRAWER_SECONDARY_LIST.map((text, index) => (
-            <ListItem button key={text} onClick={() => setComponent(text)}>
-              <ListItemIcon>
-                {index % 2 === 0 ? (
-                  <NotesSharpIcon />
-                ) : (
-                  <RestoreFromTrashSharpIcon />
-                )}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        {component === "My Notes" ? (
+          })}
+          classes={{
+            paper: clsx({
+              [classes.drawerOpen]: open,
+              [classes.drawerClose]: !open,
+            }),
+          }}
+        >
+          <div className={classes.toolbar}>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === "rtl" ? (
+                <ChevronRightIcon />
+              ) : (
+                <ChevronLeftIcon />
+              )}
+            </IconButton>
+          </div>
+          <Divider />
+          <List>
+            {DRAWER_PRIMARY_LIST.map((text, index) => (
+              <ListItem
+                button
+                key={text}
+                onClick={drawerRouteHandle(text)}
+                component={Link}
+                to={"/" + component}
+              >
+                <ListItemIcon>
+                  {index % 2 === 0 ? (
+                    <NotesSharpIcon />
+                  ) : (
+                    <AddCircleOutlineIcon className={classes.icon} />
+                  )}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+          {/* <List>
+            {DRAWER_SECONDARY_LIST.map((text, index) => (
+              <ListItem button key={text} onClick={() => setComponent(text)}>
+                <ListItemIcon>
+                  {index % 2 === 0 ? (
+                    <NotesSharpIcon />
+                  ) : (
+                    <RestoreFromTrashSharpIcon />
+                  )}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List> */}
+        </Drawer>
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          {/* {component === "My Notes" ? (
           <MyNotes />
         ) : component === "New Notes" ? (
           <NewNotes />
@@ -227,8 +240,47 @@ export default function DashboardDrawer(props) {
           <Trash />
         ) : (
           <Spam />
-        )}
-      </main>
+        )} */}
+          <Switch>
+            <Route
+              exact
+              path="/dashboard/my-notes"
+              render={() => (
+                <div>
+                  <MyNotes />
+                </div>
+              )}
+            />
+            <Route
+              exact
+              path="/dashboard/new-notes"
+              render={() => (
+                <div>
+                  <NewNotes />
+                </div>
+              )}
+            />
+            <Route
+              exact
+              path="/dashboard/trash"
+              render={() => (
+                <div>
+                  <Trash />
+                </div>
+              )}
+            />
+            <Route
+              exact
+              path="/dashboard/spam"
+              render={() => (
+                <div>
+                  <Spam />
+                </div>
+              )}
+            />
+          </Switch>
+        </main>
+      </Router>
     </div>
   );
 }

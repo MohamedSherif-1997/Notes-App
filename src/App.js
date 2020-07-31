@@ -9,6 +9,7 @@ import LoginContainer from "./containers/LoginContainer";
 import SignupContainer from "./containers/SignupContainer";
 import DashboardContainer from "./containers/Dashboard";
 import history from "./history";
+import DashboardDrawer from "./components/Drawer";
 
 function App() {
   return (
@@ -17,11 +18,7 @@ function App() {
         <Switch>
           <Route exact path="/login" component={LoginContainer} />
           <Route exact path="/signup" component={SignupContainer} />
-          <Route
-            exact
-            path="/dashboard/my-notes"
-            component={DashboardContainer}
-          />
+          <Route exact path="/dashboard" component={DashboardDrawer} />
           <Redirect to="/login" />
         </Switch>
       </Router>
